@@ -6,6 +6,61 @@
 
 namespace mymuduo
 {
+#define LOG_INFO(logmsgFormat, ...)                       \
+    do                                                    \
+    {                                                     \
+        Logger &logger = Logger::getInstance();           \
+        logger.setLogLevel(INFO);                         \
+        char buf[1024];                                   \
+        snprintf(buf, 1024, logmsgFormat, ##__VA_ARGS__); \
+        logger.log(buf);                                  \
+    } while (0)
+
+#define LOG_ERROR(logmsgFormat, ...)                      \
+    do                                                    \
+    {                                                     \
+        Logger &logger = Logger::getInstance();           \
+        logger.setLogLevel(ERROR);                        \
+        char buf[1024];                                   \
+        snprintf(buf, 1024, logmsgFormat, ##__VA_ARGS__); \
+        logger.log(buf);                                  \
+    } while (0)
+
+#define LOG_FATAL(logmsgFormat, ...)                      \
+    do                                                    \
+    {                                                     \
+        Logger &logger = Logger::getInstance();           \
+        logger.setLogLevel(FATAL);                        \
+        char buf[1024];                                   \
+        snprintf(buf, 1024, logmsgFormat, ##__VA_ARGS__); \
+        logger.log(buf);                                  \
+    } while (0)
+
+#define MYMUDUO_DEBUG
+#ifdef MYMUDUO_DEBUG
+#define LOG_DEBUG(logmsgFormat, ...)                      \
+    do                                                    \
+    {                                                     \
+        Logger &logger = Logger::getInstance();           \
+        logger.setLogLevel(DEBUG);                        \
+        char buf[1024];                                   \
+        snprintf(buf, 1024, logmsgFormat, ##__VA_ARGS__); \
+        logger.log(buf);                                  \
+    } while (0)
+#else
+#define LOG_DEBUG(logmsgFormat, ...)
+#endif
+
+#define LOG_WARN(logmsgFormat, ...)                       \
+    do                                                    \
+    {                                                     \
+        Logger &logger = Logger::getInstance();           \
+        logger.setLogLevel(WARN);                         \
+        char buf[1024];                                   \
+        snprintf(buf, 1024, logmsgFormat, ##__VA_ARGS__); \
+        logger.log(buf);                                  \
+    } while (0)
+
     enum LogLevel
     {
         INFO,
