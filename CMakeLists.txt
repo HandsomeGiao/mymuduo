@@ -14,5 +14,5 @@ add_library(mymuduo SHARED ${SRC_LIST})
 
 # test
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-add_executable(test ./test/test.cpp)
+add_executable(test ${PROJECT_SOURCE_DIR}/testCode/main.cpp)
 target_link_libraries(test mymuduo)

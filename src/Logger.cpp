@@ -1,45 +1,39 @@
 #include "../include/Logger.hpp"
-#include "../include/TimeStamp.hpp"
 
 #include <iostream>
 
-namespace mymuduo
-{
-    void Logger::setLogLevel(LogLevel level)
-    {
-        level_ = level;
-    }
+#include "../include/TimeStamp.hpp"
 
-    Logger &Logger::getInstance()
-    {
-        static Logger logger;
-        return logger;
-    }
+namespace mymuduo {
+void Logger::setLogLevel(LogLevel level) { level_ = level; }
 
-    void Logger::log(const std::string &msg)
-    {
-        switch (level_)
-        {
-        case INFO:
-            std::cout << "[INFO] ";
-            break;
-        case ERROR:
-            std::cout << "[ERROR]";
-            break;
-        case FATAL:
-            std::cout << "[FATAL]";
-            break;
-        case DEBUG:
-            std::cout << "[DEBUG]";
-            break;
-        case WARN:
-            std::cout << "[WARN] ";
-            break;
-        default:
-            break;
-        }
+Logger &Logger::getInstance() {
+  static Logger logger;
+  return logger;
+}
 
-        std::cout << "[" << TimeStamp::now().toString() << "]" << msg << std::endl;
-    }
+void Logger::log(const std::string &msg) {
+  switch (level_) {
+    case INFO:
+      std::cout << "[INFO] ";
+      break;
+    case ERROR:
+      std::cout << "[ERROR]";
+      break;
+    case FATAL:
+      std::cout << "[FATAL]";
+      break;
+    case DEBUG:
+      std::cout << "[DEBUG]";
+      break;
+    case WARN:
+      std::cout << "[WARN] ";
+      break;
+    default:
+      break;
+  }
 
-} // namespace mymuduo
+  std::cout << "[" << TimeStamp::now().toString() << "]" << msg << std::endl;
+}
+
+}  // namespace mymuduo
